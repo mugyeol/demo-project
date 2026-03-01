@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;600;700&display=swap');
+
+:root {
+  --bg-1: #e6f0ec;
+  --bg-2: #f7f6f2;
+  --ink: #152019;
+  --ink-soft: #516054;
+  --accent: #1f7a53;
+  --accent-strong: #14563a;
+  --line: #d0d9d3;
+  --danger: #a63b32;
+  --card: #ffffffcc;
+}
+
+.todo-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(circle at 20% 10%, #cde5d7 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, #e6dfca 0%, transparent 40%),
+    linear-gradient(130deg, var(--bg-1), var(--bg-2));
+}
+
+.todo-shell {
+  width: min(760px, 100%);
+  backdrop-filter: blur(8px);
+  background: var(--card);
+  border: 1px solid #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(28, 41, 35, 0.14);
+  padding: clamp(1.2rem, 2.2vw, 2rem);
+  animation: rise 360ms ease-out;
+}
+
+.todo-header {
+  margin-bottom: 1.2rem;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font: 700 0.72rem/1 'Manrope', sans-serif;
+  color: var(--ink-soft);
+}
+
+h1 {
+  margin: 0.25rem 0 0.2rem;
+  font: 600 clamp(2rem, 4vw, 2.6rem)/1.06 'Fraunces', serif;
+  color: var(--ink);
+}
+
+.subtitle {
+  margin: 0;
+  font: 400 0.92rem/1.4 'Manrope', sans-serif;
+  color: var(--ink-soft);
+}
+
+.todo-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.todo-input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #ffffffd0;
+  padding: 0.82rem 0.9rem;
+  font: 600 0.98rem/1.2 'Manrope', sans-serif;
+  color: var(--ink);
+}
+
+.todo-input:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 40%, white);
+  outline-offset: 1px;
+}
+
+.add-btn,
+.filter-btn,
+.ghost-btn,
+.delete-btn {
+  border: 0;
+  border-radius: 12px;
+  font: 700 0.88rem/1 'Manrope', sans-serif;
+  cursor: pointer;
+}
+
+.add-btn {
+  background: var(--accent);
+  color: #f3fff8;
+  padding: 0 1rem;
+}
+
+.add-btn:hover {
+  background: var(--accent-strong);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.filters {
+  display: inline-flex;
+  gap: 0.45rem;
+}
+
+.filter-btn {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink-soft);
+  padding: 0.42rem 0.66rem;
+}
+
+.filter-btn.is-active {
+  border-color: var(--accent);
+  background: #ddf4e8;
+  color: var(--accent-strong);
+}
+
+.ghost-btn {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 0.42rem 0.7rem;
+}
+
+.ghost-btn:disabled {
+  opacity: 0.44;
+  cursor: not-allowed;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.65rem 0.7rem;
+  animation: fadeIn 200ms ease-out;
+}
+
+.todo-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font: 600 0.95rem/1.3 'Manrope', sans-serif;
+  color: var(--ink);
+}
+
+.todo-main input[type='checkbox'] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--accent);
+}
+
+.todo-item.is-done {
+  opacity: 0.66;
+}
+
+.todo-item.is-done .todo-main span {
+  text-decoration: line-through;
+}
+
+.delete-btn {
+  border: 1px solid #e6c9c4;
+  background: #fff5f3;
+  color: var(--danger);
+  padding: 0.44rem 0.58rem;
+}
+
+.empty {
+  text-align: center;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  background: #ffffff80;
+  color: var(--ink-soft);
+  font: 600 0.9rem/1.2 'Manrope', sans-serif;
+  padding: 1rem;
+}
+
+.todo-footer {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  color: var(--ink-soft);
+  font: 700 0.78rem/1 'Manrope', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 540px) {
+  .todo-form {
+    grid-template-columns: 1fr;
+  }
+
+  .add-btn {
+    height: 2.75rem;
+  }
+}
