@@ -15,7 +15,7 @@
 3. **Edge-to-Edge Rows** — Ditch card container, use full-width list similar to native apps. Pros: extremely minimal. Cons: loses contained feel and existing responsive padding.
 
 ## Selected Direction
-Go with **Bordered Layout**: muted warm-gray background, central container with 1px strokes, lots of whitespace, Inter / "Plus Jakarta Sans" stack. Keep accent emerald for CTA + filter state. All other buttons become outline/ghost.
+Go with **Bordered Layout**: muted warm-gray background, central container with 1px strokes, lots of whitespace, Inter body type with Space Grotesk for headlines. Keep accent emerald for CTA + filter state. All other buttons become outline/ghost.
 
 ## Implementation Notes
 - Replace current font import with `Inter` (weights 500/600) for text and `Space Grotesk` accent for title.
