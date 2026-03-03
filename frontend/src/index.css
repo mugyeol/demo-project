@@ -10,5 +10,7 @@ body,
 }
 
 body {
-  color: #152019;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: linear-gradient(180deg, #f7f9fc 0%, #eef1f7 100%);
 }

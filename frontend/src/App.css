@@ -1,229 +1,267 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --bg-1: #e6f0ec;
-  --bg-2: #f7f6f2;
-  --ink: #152019;
-  --ink-soft: #516054;
-  --accent: #1f7a53;
-  --accent-strong: #14563a;
-  --line: #d0d9d3;
-  --danger: #a63b32;
-  --card: #ffffffcc;
+  --page-bg: #f7f9fc;
+  --page-bg-2: #eef1f7;
+  --surface: #ffffff;
+  --ink: #0f172a;
+  --muted: #475467;
+  --border: #e4e7ec;
+  --border-strong: #c5cad5;
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --accent-subtle: #e0e7ff;
+  --danger: #ef4444;
+  --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.08);
+  --shadow-card: 0 1.5px 3px rgba(15, 23, 42, 0.08);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .todo-page {
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 2rem 1rem;
-  background:
-    radial-gradient(circle at 20% 10%, #cde5d7 0%, transparent 45%),
-    radial-gradient(circle at 85% 80%, #e6dfca 0%, transparent 40%),
-    linear-gradient(130deg, var(--bg-1), var(--bg-2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 3.5rem) 1.5rem;
+  background: linear-gradient(180deg, var(--page-bg) 0%, var(--page-bg-2) 100%);
 }
 
 .todo-shell {
-  width: min(760px, 100%);
-  backdrop-filter: blur(8px);
-  background: var(--card);
-  border: 1px solid #ffffff;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(28, 41, 35, 0.14);
-  padding: clamp(1.2rem, 2.2vw, 2rem);
-  animation: rise 360ms ease-out;
+  width: min(680px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: clamp(1.75rem, 3vw, 2.8rem);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: fadeIn 260ms ease-out;
 }
 
 .todo-header {
-  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .eyebrow {
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font: 700 0.72rem/1 'Manrope', sans-serif;
-  color: var(--ink-soft);
+  letter-spacing: 0.16em;
+  font: 600 0.75rem/1 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--accent);
 }
 
 h1 {
-  margin: 0.25rem 0 0.2rem;
-  font: 600 clamp(2rem, 4vw, 2.6rem)/1.06 'Fraunces', serif;
+  margin: 0;
+  font: 600 clamp(2rem, 4vw, 2.75rem)/1.1 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--ink);
 }
 
 .subtitle {
   margin: 0;
-  font: 400 0.92rem/1.4 'Manrope', sans-serif;
-  color: var(--ink-soft);
+  font: 400 0.95rem/1.6 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--muted);
 }
 
 .todo-form {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 0.65rem;
-  margin-bottom: 1rem;
+  gap: 0.85rem;
+  align-items: center;
 }
 
 .todo-input {
   width: 100%;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  background: #ffffffd0;
-  padding: 0.82rem 0.9rem;
-  font: 600 0.98rem/1.2 'Manrope', sans-serif;
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  padding: 0 1.1rem;
+  height: 3rem;
+  font: 500 1rem/1 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--ink);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
 }
 
-.todo-input:focus {
-  outline: 2px solid color-mix(in srgb, var(--accent) 40%, white);
-  outline-offset: 1px;
+.todo-input::placeholder {
+  color: color-mix(in srgb, var(--muted) 60%, white);
 }
 
-.add-btn,
-.filter-btn,
-.ghost-btn,
-.delete-btn {
-  border: 0;
+.todo-input:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+button {
+  font: 500 0.95rem/1 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   border-radius: 12px;
-  font: 700 0.88rem/1 'Manrope', sans-serif;
+  border: 0;
   cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .add-btn {
+  min-width: 120px;
+  height: 3rem;
   background: var(--accent);
-  color: #f3fff8;
-  padding: 0 1rem;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
 }
 
-.add-btn:hover {
+.add-btn:hover:not(:disabled) {
   background: var(--accent-strong);
+  transform: translateY(-1px);
 }
 
 .toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.8rem;
+  gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
 }
 
 .filters {
   display: inline-flex;
-  gap: 0.45rem;
+  gap: 0.25rem;
+  padding: 0.2rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
 }
 
 .filter-btn {
-  border: 1px solid var(--line);
-  background: #fff;
-  color: var(--ink-soft);
-  padding: 0.42rem 0.66rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
 }
 
 .filter-btn.is-active {
-  border-color: var(--accent);
-  background: #ddf4e8;
+  background: var(--accent-subtle);
   color: var(--accent-strong);
 }
 
 .ghost-btn {
-  border: 1px solid var(--line);
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--ink-soft);
-  padding: 0.42rem 0.7rem;
+  color: var(--muted);
 }
 
-.ghost-btn:disabled {
-  opacity: 0.44;
-  cursor: not-allowed;
+.ghost-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent-strong);
 }
 
 .todo-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .todo-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.7rem;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #fff;
-  padding: 0.65rem 0.7rem;
-  animation: fadeIn 200ms ease-out;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+  padding: 0.95rem 1.1rem;
+  box-shadow: var(--shadow-card);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.todo-item:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
 }
 
 .todo-main {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  font: 600 0.95rem/1.3 'Manrope', sans-serif;
+  gap: 0.85rem;
+  font: 500 1rem/1.3 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--ink);
 }
 
 .todo-main input[type='checkbox'] {
-  width: 1rem;
-  height: 1rem;
+  width: 1.1rem;
+  height: 1.1rem;
   accent-color: var(--accent);
+  border-radius: 6px;
 }
 
 .todo-item.is-done {
-  opacity: 0.66;
+  border-color: var(--border-strong);
+  background: #f9fafc;
+  opacity: 0.85;
 }
 
 .todo-item.is-done .todo-main span {
+  color: var(--muted);
   text-decoration: line-through;
 }
 
 .delete-btn {
-  border: 1px solid #e6c9c4;
-  background: #fff5f3;
+  background: transparent;
+  border: 1px solid transparent;
   color: var(--danger);
-  padding: 0.44rem 0.58rem;
+  padding: 0.4rem 0.65rem;
+}
+
+.delete-btn:hover {
+  border-color: color-mix(in srgb, var(--danger) 40%, white);
+  background: color-mix(in srgb, var(--danger) 6%, white);
 }
 
 .empty {
   text-align: center;
-  border: 1px dashed var(--line);
-  border-radius: 12px;
-  background: #ffffff80;
-  color: var(--ink-soft);
-  font: 600 0.9rem/1.2 'Manrope', sans-serif;
-  padding: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 18px;
+  background: #fdfefe;
+  color: var(--muted);
+  font: 500 0.95rem/1.4 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding: 1.4rem 1rem;
 }
 
 .todo-footer {
-  margin-top: 1rem;
   display: flex;
-  gap: 0.85rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  color: var(--ink-soft);
-  font: 700 0.78rem/1 'Manrope', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.todo-footer span {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  font: 600 0.75rem/1 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(2px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -231,12 +269,25 @@ h1 {
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
+  .todo-shell {
+    padding: 1.5rem;
+  }
+
   .todo-form {
     grid-template-columns: 1fr;
   }
 
   .add-btn {
-    height: 2.75rem;
+    width: 100%;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters {
+    justify-content: center;
   }
 }
