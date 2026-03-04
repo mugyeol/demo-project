@@ -10,9 +10,9 @@ body,
 }
 
 body {
-  font-family: 'Space Grotesk', 'Share Tech Mono', 'Courier New', Courier, monospace;
+  font-family: 'Gowun Batang', 'Noto Sans KR', serif;
   color: var(--ink);
-  background: radial-gradient(circle at top, #061129 0%, var(--page-bg-2) 50%, var(--page-bg) 100%);
+  background: var(--page-bg);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }

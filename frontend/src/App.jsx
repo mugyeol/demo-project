@@ -71,21 +71,21 @@ function App() {
     <main className="todo-page">
       <section className="todo-shell">
         <header className="todo-header">
-          <p className="eyebrow">Trustmee Test Project</p>
-          <h1>Todo List</h1>
-          <p className="subtitle">[LOCAL NODE // STORAGE ACTIVE]</p>
+          <p className="eyebrow">內史庫 비망록</p>
+          <h1>할 일 기록부</h1>
+          <p className="subtitle">경자년 일상 업무 관청</p>
         </header>
 
         <form className="todo-form" onSubmit={addTodo}>
           <input
-            aria-label="Add todo"
+            aria-label="할 일을 입력"
             className="todo-input"
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
-            placeholder="Add a task..."
+            placeholder="할 일을 적어 보세요..."
           />
           <button className="add-btn" type="submit">
-            Add
+            기입
           </button>
         </form>
 
@@ -114,13 +114,13 @@ function App() {
             </button>
           </div>
           <button type="button" className="ghost-btn" onClick={clearDone} disabled={stats.done === 0}>
-            Clear done
+            완료 정리
           </button>
         </section>
 
         <ul className="todo-list" aria-live="polite">
           {visibleTodos.length === 0 ? (
-            <li className="empty">No tasks in this filter.</li>
+            <li className="empty">비어 있음 - 새로운 기록을 남기세요.</li>
           ) : (
             visibleTodos.map((item) => (
               <li key={item.id} className={item.done ? 'todo-item is-done' : 'todo-item'}>
@@ -133,7 +133,7 @@ function App() {
                   <span>{item.text}</span>
                 </label>
                 <button type="button" className="delete-btn" onClick={() => removeTodo(item.id)}>
-                  Delete
+                  삭제
                 </button>
               </li>
             ))
@@ -141,9 +141,9 @@ function App() {
         </ul>
 
         <footer className="todo-footer">
-          <span>{stats.left} left</span>
-          <span>{stats.done} done</span>
-          <span>{stats.total} total</span>
+          <span aria-label="미완료">미완료 {stats.left}</span>
+          <span aria-label="완료">완료 {stats.done}</span>
+          <span aria-label="전체">전체 {stats.total}</span>
         </footer>
       </section>
     </main>
