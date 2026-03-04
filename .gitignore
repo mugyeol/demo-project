@@ -1,1 +1,5 @@
-.playwright-cli/
+logs/
+.issue_flow.base.frontend.pid
+.issue_flow.base.frontend.port
+.issue_flow.base.frontend.logpath
+.issue_flow.base.frontend.log
