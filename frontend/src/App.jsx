@@ -71,9 +71,9 @@ function App() {
     <main className="todo-page">
       <section className="todo-shell">
         <header className="todo-header">
-          <p className="eyebrow">Trustmee Test Project</p>
-          <h1>Todo List</h1>
-          <p className="subtitle">[LOCAL NODE // STORAGE ACTIVE]</p>
+          <p className="eyebrow">Joseon Record Office</p>
+          <h1>할 일 장부</h1>
+          <p className="subtitle">[筆記臺帳 • LOCAL STORAGE]</p>
         </header>
 
         <form className="todo-form" onSubmit={addTodo}>
