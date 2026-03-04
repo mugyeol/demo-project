@@ -10,8 +10,9 @@ body,
 }
 
 body {
-  font-family: 'Space Mono', 'Courier New', Courier, monospace;
+  font-family: 'Space Grotesk', 'Share Tech Mono', 'Courier New', Courier, monospace;
   color: var(--ink);
-  background: linear-gradient(180deg, var(--page-bg) 0%, var(--page-bg-2) 100%);
+  background: radial-gradient(circle at top, #061129 0%, var(--page-bg-2) 50%, var(--page-bg) 100%);
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }

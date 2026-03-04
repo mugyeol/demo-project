@@ -73,7 +73,7 @@ function App() {
         <header className="todo-header">
           <p className="eyebrow">Trustmee Test Project</p>
           <h1>Todo List</h1>
-          <p className="subtitle">Dashboard automation demo target</p>
+          <p className="subtitle">[LOCAL NODE // STORAGE ACTIVE]</p>
         </header>
 
         <form className="todo-form" onSubmit={addTodo}>
