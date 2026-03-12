@@ -10,9 +10,9 @@ body,
 }
 
 body {
-  font-family: 'Noto Serif KR', 'Song Myung', serif;
-  color: var(--ink);
-  background: radial-gradient(circle at 30% 20%, #fdf2df 0%, #f1e0c8 55%, #d9c0a4 100%);
+  font-family: 'VT323', monospace;
+  color: #000000;
+  background: #008080;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: none;
 }
