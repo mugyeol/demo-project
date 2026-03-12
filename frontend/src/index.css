@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -10,9 +12,9 @@ body,
 }
 
 body {
-  font-family: 'Noto Serif KR', 'Song Myung', serif;
-  color: var(--ink);
-  background: radial-gradient(circle at 30% 20%, #fdf2df 0%, #f1e0c8 55%, #d9c0a4 100%);
+  font-family: 'Inter', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  color: #e2e8f0;
+  background: #0a0e1a;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }

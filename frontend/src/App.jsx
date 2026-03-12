@@ -71,9 +71,9 @@ function App() {
     <main className="todo-page">
       <section className="todo-shell">
         <header className="todo-header">
-          <p className="eyebrow">Joseon Record Office</p>
-          <h1>할 일 장부</h1>
-          <p className="subtitle">[筆記臺帳 • LOCAL STORAGE]</p>
+          <p className="eyebrow">Neural Task Engine</p>
+          <h1>Task Flow</h1>
+          <p className="subtitle">AI-Powered • Local Storage</p>
         </header>
 
         <form className="todo-form" onSubmit={addTodo}>
