@@ -10,9 +10,9 @@ body,
 }
 
 body {
-  font-family: 'VT323', monospace;
-  color: #000000;
-  background: #008080;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  color: #2c1810;
+  background: #f5e6c8;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: none;
+  -webkit-font-smoothing: antialiased;
 }
