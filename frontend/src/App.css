@@ -1,32 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
-
 :root {
-  --win-bg: #008080;
-  --win-face: #c0c0c0;
-  --win-light: #ffffff;
-  --win-mid: #808080;
-  --win-dark: #000000;
-  --win-title: #000080;
-  --win-title-text: #ffffff;
-  --accent-hot: #ff00ff;
-  --accent-lime: #00ff00;
-  --accent-cyan: #00ffff;
-  --accent-yellow: #ffff00;
-  --text-primary: #000000;
-  --text-muted: #404040;
-  --link-blue: #0000ff;
-  --danger: #ff0000;
+  --bg-deep: #0a0e1a;
+  --bg-surface: rgba(15, 20, 40, 0.85);
+  --bg-card: rgba(20, 27, 55, 0.7);
+  --bg-input: rgba(10, 15, 30, 0.8);
+  --border-glass: rgba(100, 140, 255, 0.15);
+  --border-glow: rgba(100, 180, 255, 0.3);
+  --accent-primary: #6c8cff;
+  --accent-cyan: #00e5ff;
+  --accent-purple: #b040ff;
+  --accent-gradient: linear-gradient(135deg, #6c8cff, #00e5ff);
+  --accent-gradient-hover: linear-gradient(135deg, #8aa4ff, #40ecff);
+  --text-primary: #e8ecf4;
+  --text-secondary: #8892a8;
+  --text-muted: #505a70;
+  --danger: #ff4070;
+  --danger-hover: #ff6090;
+  --success: #00e890;
+  --shadow-glow: 0 0 30px rgba(100, 140, 255, 0.08);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
 }
 
 :focus-visible {
-  outline: 2px dotted var(--accent-hot);
+  outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
 }
 
 ::selection {
-  background: var(--win-title);
-  color: var(--win-title-text);
+  background: rgba(108, 140, 255, 0.3);
+  color: #ffffff;
 }
+
+/* ─── Page ─── */
 
 .todo-page {
   min-height: 100vh;
@@ -34,224 +42,278 @@
   align-items: center;
   justify-content: center;
   padding: clamp(1rem, 4vw, 3rem);
-  background-color: var(--win-bg);
+  background-color: var(--bg-deep);
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.1) 0%, transparent 40%);
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(108, 140, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 90%, rgba(176, 64, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(0, 229, 255, 0.04) 0%, transparent 60%);
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  image-rendering: pixelated;
 }
 
 .todo-page::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="4" height="4"%3E%3Crect width="1" height="1" fill="rgba(0,0,0,0.08)"/%3E%3C/svg%3E');
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(108, 140, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(0, 229, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px, 40px 40px;
   pointer-events: none;
   z-index: -1;
 }
 
+/* ─── Shell (main card) ─── */
+
 .todo-shell {
-  width: min(640px, 100%);
-  background: var(--win-face);
-  border: 2px solid;
-  border-color: var(--win-light) var(--win-dark) var(--win-dark) var(--win-light);
+  width: min(580px, 100%);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl);
   padding: 0;
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow:
+    var(--shadow-card),
+    var(--shadow-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
   gap: 0;
+  overflow: hidden;
 }
+
+/* ─── Header ─── */
 
 .todo-header {
   display: flex;
   flex-direction: column;
   gap: 0;
+  padding: 2rem 1.75rem 1.5rem;
+  position: relative;
+}
+
+.todo-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.75rem;
+  right: 1.75rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
 }
 
 .eyebrow {
   margin: 0;
-  background: linear-gradient(90deg, var(--win-title), #1084d0);
-  color: var(--win-title-text);
-  font: bold 0.85rem/1 'VT323', monospace;
-  letter-spacing: 0.05em;
-  padding: 4px 8px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  text-transform: none;
+  padding: 0;
+  background: none;
 }
 
 .eyebrow::before {
   content: '';
-  width: 16px;
-  height: 16px;
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-hot));
-  border: 1px solid;
-  border-color: var(--win-light) var(--win-dark) var(--win-dark) var(--win-light);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
   flex-shrink: 0;
+  animation: pulse 3s ease-in-out infinite;
 }
 
 h1 {
-  margin: 0;
-  font-family: 'Press Start 2P', 'VT323', monospace;
-  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
-  font-weight: 400;
+  margin: 0.6rem 0 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+  font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: none;
-  text-shadow: 2px 2px 0 var(--accent-cyan);
-  padding: 1rem 1rem 0.4rem;
-  text-align: center;
+  text-shadow: none;
+  padding: 0;
+  text-align: left;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
-  margin: 0;
-  font: 400 1.1rem/1.5 'VT323', monospace;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
+  margin: 0.3rem 0 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
   text-transform: none;
-  text-align: center;
-  padding: 0 1rem 0.8rem;
+  text-align: left;
+  padding: 0;
   border-bottom: none;
-  padding-top: 0;
 }
 
 .subtitle::before {
-  content: '>> ';
-  color: var(--accent-hot);
+  content: none;
 }
 
 .subtitle::after {
-  content: ' <<';
-  color: var(--accent-hot);
+  content: none;
 }
+
+/* ─── Form ─── */
 
 .todo-form {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.5rem;
+  gap: 0.75rem;
   align-items: center;
-  padding: 0 0.8rem;
-  margin-bottom: 0.5rem;
+  padding: 1.25rem 1.75rem;
 }
 
 .todo-input {
   width: 100%;
-  border: 2px solid;
-  border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark);
-  border-radius: 0;
-  background: #ffffff;
-  padding: 0 0.6rem;
-  height: 2.4rem;
-  font: 400 1.2rem/1 'VT323', monospace;
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  padding: 0 1rem;
+  height: 2.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
   color: var(--text-primary);
-  box-shadow: none;
-  transition: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .todo-input::placeholder {
-  color: var(--win-mid);
+  color: var(--text-muted);
   font-style: normal;
 }
 
 .todo-input:focus-visible {
-  border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark);
-  box-shadow: inset 0 0 0 1px var(--accent-hot);
+  border-color: var(--accent-primary);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.2),
+    0 0 0 3px rgba(108, 140, 255, 0.15);
   outline: none;
-  transform: none;
 }
 
+/* ─── Buttons (base) ─── */
+
 button {
-  font-family: 'VT323', monospace;
-  font-weight: 400;
-  font-size: 1.1rem;
-  text-transform: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
   letter-spacing: 0.02em;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  border: 2px solid;
-  border-color: var(--win-light) var(--win-dark) var(--win-dark) var(--win-light);
-  background: var(--win-face);
+  border: 1px solid transparent;
+  background: var(--bg-card);
   color: var(--text-primary);
-  transition: none;
+  transition: all 0.2s ease;
 }
 
 button:active:not(:disabled) {
-  border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark);
-  padding-top: 2px;
-  padding-left: 2px;
+  transform: scale(0.97);
 }
 
 button:disabled {
-  opacity: 0.5;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
 button:focus-visible {
-  outline: 2px dotted var(--accent-hot);
+  outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
 }
 
+/* ─── Add button ─── */
+
 .add-btn {
-  min-width: 100px;
-  height: 2.4rem;
-  background: var(--win-face);
-  color: var(--text-primary);
-  border: 2px solid;
-  border-color: var(--win-light) var(--win-dark) var(--win-dark) var(--win-light);
-  box-shadow: none;
+  min-width: 90px;
+  height: 2.75rem;
+  background: var(--accent-gradient);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0 1.25rem;
+  box-shadow: 0 2px 12px rgba(108, 140, 255, 0.25);
   position: relative;
-  overflow: visible;
-  font-size: 1.2rem;
-  padding: 0 1rem;
+  overflow: hidden;
 }
 
-.add-btn::after,
 .add-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-gradient-hover);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: inherit;
+}
+
+.add-btn::after {
   content: none;
 }
 
 .add-btn:hover:not(:disabled) {
-  background: #dfdfdf;
-  transform: none;
-  box-shadow: none;
+  box-shadow: 0 4px 20px rgba(108, 140, 255, 0.35);
+  transform: translateY(-1px);
 }
+
+.add-btn:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.add-btn span,
+.add-btn {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Toolbar ─── */
 
 .toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  background: var(--win-face);
+  background: rgba(15, 20, 40, 0.4);
   border: none;
-  border-top: 2px solid;
-  border-top-color: var(--win-mid);
-  border-bottom: 2px solid;
-  border-bottom-color: var(--win-mid);
+  border-top: 1px solid var(--border-glass);
+  border-bottom: 1px solid var(--border-glass);
   border-radius: 0;
-  padding: 0.4rem 0.8rem;
+  padding: 0.75rem 1.75rem;
   box-shadow: none;
   margin: 0;
 }
 
 .filters {
   display: flex;
-  gap: 0.3rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  padding: 0.25rem 0.8rem;
-  border-radius: 0;
-  background: var(--win-face);
-  border: 2px solid;
-  border-color: var(--win-light) var(--win-dark) var(--win-dark) var(--win-light);
-  color: var(--text-primary);
-  font-size: 1rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
   letter-spacing: 0.02em;
   position: relative;
 }
@@ -261,67 +323,85 @@ button:focus-visible {
 }
 
 .filter-btn:hover:not(.is-active) {
-  background: #dfdfdf;
+  background: rgba(108, 140, 255, 0.08);
   color: var(--text-primary);
-  border-style: solid;
+  border-color: var(--border-glow);
 }
 
 .filter-btn.is-active {
-  background: var(--win-title);
-  border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark);
-  color: var(--win-title-text);
-  box-shadow: none;
+  background: rgba(108, 140, 255, 0.15);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 0 12px rgba(108, 140, 255, 0.1);
 }
 
 .filter-btn.is-active::after {
   content: none;
 }
 
+/* ─── Ghost / Clear button ─── */
+
 .ghost-btn {
-  padding: 0.25rem 0.8rem;
-  border-radius: 0;
-  background: var(--win-face);
-  border: 2px solid;
-  border-color: var(--win-light) var(--win-dark) var(--win-dark) var(--win-light);
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid rgba(255, 64, 112, 0.2);
   color: var(--danger);
-  font-size: 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: none;
   box-shadow: none;
 }
 
 .ghost-btn:hover:not(:disabled) {
-  background: var(--danger);
-  color: #ffffff;
+  background: rgba(255, 64, 112, 0.1);
+  border-color: var(--danger);
+  color: var(--danger-hover);
 }
+
+/* ─── Todo list ─── */
 
 .todo-list {
   list-style: none;
-  padding: 0.5rem 0.8rem;
+  padding: 1rem 1.75rem;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 .todo-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.6rem;
-  border: 2px solid;
-  border-color: var(--win-light) var(--win-dark) var(--win-dark) var(--win-light);
-  border-radius: 0;
-  background: #ffffff;
-  padding: 0.5rem 0.8rem;
+  gap: 0.75rem;
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  padding: 0.75rem 1rem;
   box-shadow: none;
   position: relative;
-  overflow: visible;
-  animation: retroEnter 200ms ease both;
+  overflow: hidden;
+  animation: slideIn 0.3s ease both;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.todo-item:hover {
+  border-color: var(--border-glow);
+  background: rgba(25, 35, 65, 0.7);
 }
 
 .todo-item::before {
-  content: none;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent-gradient);
+  opacity: 0.6;
+  border-radius: 0 2px 2px 0;
 }
 
 .todo-item::after {
@@ -329,114 +409,145 @@ button:focus-visible {
 }
 
 .todo-item.is-done {
-  background: #e8e8e8;
-  border-color: var(--win-mid) var(--win-light) var(--win-light) var(--win-mid);
-  opacity: 0.85;
+  background: rgba(15, 20, 35, 0.5);
+  border-color: rgba(100, 140, 255, 0.08);
+  opacity: 0.65;
 }
+
+.todo-item.is-done::before {
+  background: var(--success);
+  opacity: 0.4;
+}
+
+/* ─── Todo label ─── */
 
 .todo-main {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  font: 400 1.2rem/1.3 'VT323', monospace;
+  gap: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.4;
   color: var(--text-primary);
   cursor: pointer;
 }
 
 .todo-main input[type='checkbox'] {
   appearance: none;
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 0;
-  border: 2px solid;
-  border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark);
-  background: #ffffff;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 6px;
+  border: 1.5px solid var(--text-muted);
+  background: transparent;
   display: grid;
   place-items: center;
   margin: 0;
   box-shadow: none;
-  transition: none;
+  transition: all 0.2s ease;
   cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo-main input[type='checkbox']:hover {
+  border-color: var(--accent-primary);
 }
 
 .todo-main input[type='checkbox']::after {
   content: '';
-  width: 0.45rem;
-  height: 0.7rem;
-  border: 2px solid var(--text-primary);
+  width: 0.35rem;
+  height: 0.6rem;
+  border: 2px solid #ffffff;
   border-top: 0;
   border-left: 0;
-  transform: rotate(40deg);
+  transform: rotate(40deg) scale(0);
   opacity: 0;
-  transition: opacity 100ms;
+  transition: all 0.15s ease;
 }
 
 .todo-main input[type='checkbox']:checked {
-  background: var(--accent-lime);
-  border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark);
-  box-shadow: none;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 8px rgba(108, 140, 255, 0.3);
 }
 
 .todo-main input[type='checkbox']:checked::after {
   opacity: 1;
+  transform: rotate(40deg) scale(1);
 }
 
 .todo-main span {
-  transition: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 .todo-item.is-done .todo-main span {
-  color: var(--win-mid);
+  color: var(--text-muted);
   text-decoration: line-through;
+  text-decoration-color: var(--text-muted);
 }
 
+/* ─── Delete button ─── */
+
 .delete-btn {
-  background: var(--win-face);
-  color: var(--danger);
-  padding: 0.15rem 0.6rem;
-  border-radius: 0;
-  border: 2px solid;
-  border-color: var(--win-light) var(--win-dark) var(--win-dark) var(--win-light);
+  background: transparent;
+  color: var(--text-muted);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
   box-shadow: none;
-  font-size: 1rem;
+  font-size: 0.78rem;
   letter-spacing: 0.02em;
+  opacity: 0;
+  transition: all 0.15s ease;
+}
+
+.todo-item:hover .delete-btn {
+  opacity: 1;
 }
 
 .delete-btn:hover:not(:disabled) {
-  background: var(--danger);
-  color: #ffffff;
-  transform: none;
-  box-shadow: none;
+  background: rgba(255, 64, 112, 0.1);
+  color: var(--danger);
+  border-color: rgba(255, 64, 112, 0.2);
 }
+
+/* ─── Empty state ─── */
 
 .empty {
   text-align: center;
-  border: 2px dashed var(--win-mid);
-  border-radius: 0;
-  padding: 1.5rem 1rem;
-  font: 400 1.2rem/1.6 'VT323', monospace;
+  border: 1px dashed var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 2rem 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.6;
   color: var(--text-muted);
-  background: #ffffff;
-  animation: retroEnter 200ms ease both;
+  background: transparent;
+  animation: slideIn 0.3s ease both;
 }
+
+/* ─── Footer ─── */
 
 .todo-footer {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  padding: 0.5rem 0.8rem 0.8rem;
-  border-top: 2px solid var(--win-mid);
+  padding: 1rem 1.75rem 1.25rem;
+  border-top: 1px solid var(--border-glass);
 }
 
 .todo-footer span {
-  border: 2px solid;
-  border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark);
-  border-radius: 0;
-  padding: 0.25rem 0.6rem;
-  font: 400 1rem/1 'VT323', monospace;
+  border: 1px solid var(--border-glass);
+  border-radius: 100px;
+  padding: 0.25rem 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1;
   text-transform: none;
-  color: var(--text-primary);
-  background: #ffffff;
+  color: var(--text-secondary);
+  background: rgba(108, 140, 255, 0.05);
   letter-spacing: 0.02em;
   position: relative;
   overflow: visible;
@@ -450,10 +561,12 @@ button:focus-visible {
   content: none;
 }
 
-@keyframes retroEnter {
+/* ─── Animations ─── */
+
+@keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -461,13 +574,36 @@ button:focus-visible {
   }
 }
 
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--accent-cyan);
+  }
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 4px var(--accent-cyan);
+  }
+}
+
+/* ─── Responsive ─── */
+
 @media (max-width: 560px) {
   .todo-shell {
-    padding: 0;
+    border-radius: var(--radius-lg);
+  }
+
+  .todo-header {
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+
+  .todo-header::after {
+    left: 1.25rem;
+    right: 1.25rem;
   }
 
   .todo-form {
     grid-template-columns: 1fr;
+    padding: 1rem 1.25rem;
   }
 
   .add-btn {
@@ -477,10 +613,23 @@ button:focus-visible {
   .toolbar {
     flex-direction: column;
     align-items: stretch;
+    padding: 0.75rem 1.25rem;
   }
 
   .filters {
     justify-content: space-between;
+  }
+
+  .todo-list {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .todo-footer {
+    padding: 0.75rem 1.25rem 1rem;
+  }
+
+  .delete-btn {
+    opacity: 1;
   }
 }
 
