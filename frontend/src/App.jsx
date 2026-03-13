@@ -71,9 +71,9 @@ function App() {
     <main className="todo-page">
       <section className="todo-shell">
         <header className="todo-header">
-          <p className="eyebrow">My_ToDo.exe</p>
-          <h1>~ TO DO LIST ~</h1>
-          <p className="subtitle">Powered by LOCAL STORAGE v1.0</p>
+          <p className="eyebrow">TASK SYSTEM ONLINE</p>
+          <h1>TODO</h1>
+          <p className="subtitle">Organize your tasks with clarity and focus</p>
         </header>
 
         <form className="todo-form" onSubmit={addTodo}>
