@@ -71,9 +71,9 @@ function App() {
     <main className="todo-page">
       <section className="todo-shell">
         <header className="todo-header">
-          <p className="eyebrow">My_ToDo.exe</p>
-          <h1>~ TO DO LIST ~</h1>
-          <p className="subtitle">Powered by LOCAL STORAGE v1.0</p>
+          <p className="eyebrow">Codex Operum</p>
+          <h1>Tasks of the Day</h1>
+          <p className="subtitle">A ledger of noble pursuits, preserved in local storage</p>
         </header>
 
         <form className="todo-form" onSubmit={addTodo}>
@@ -82,10 +82,10 @@ function App() {
             className="todo-input"
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
-            placeholder="Add a task..."
+            placeholder="Inscribe a new task..."
           />
           <button className="add-btn" type="submit">
-            Add
+            Inscribe
           </button>
         </form>
 
@@ -114,13 +114,13 @@ function App() {
             </button>
           </div>
           <button type="button" className="ghost-btn" onClick={clearDone} disabled={stats.done === 0}>
-            Clear done
+            Erase completed
           </button>
         </section>
 
         <ul className="todo-list" aria-live="polite">
           {visibleTodos.length === 0 ? (
-            <li className="empty">No tasks in this filter.</li>
+            <li className="empty">No tasks found in this ledger.</li>
           ) : (
             visibleTodos.map((item) => (
               <li key={item.id} className={item.done ? 'todo-item is-done' : 'todo-item'}>
@@ -133,7 +133,7 @@ function App() {
                   <span>{item.text}</span>
                 </label>
                 <button type="button" className="delete-btn" onClick={() => removeTodo(item.id)}>
-                  Delete
+                  Remove
                 </button>
               </li>
             ))
