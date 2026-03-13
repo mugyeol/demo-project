@@ -10,9 +10,9 @@ body,
 }
 
 body {
-  font-family: 'VT323', monospace;
-  color: #000000;
-  background: #008080;
+  font-family: 'EB Garamond', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  color: #2c1810;
+  background: #3b2a1a;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: none;
+  -webkit-font-smoothing: antialiased;
 }
