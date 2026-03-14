@@ -71,9 +71,9 @@ function App() {
     <main className="todo-page">
       <section className="todo-shell">
         <header className="todo-header">
-          <p className="eyebrow">TASK SYSTEM ONLINE</p>
+          <p className="eyebrow">Liber Operum</p>
           <h1>TODO</h1>
-          <p className="subtitle">Organize your tasks with clarity and focus</p>
+          <p className="subtitle">Compose thy duties with grace and purpose</p>
         </header>
 
         <form className="todo-form" onSubmit={addTodo}>
@@ -82,7 +82,7 @@ function App() {
             className="todo-input"
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
-            placeholder="Add a task..."
+            placeholder="Inscribe a task..."
           />
           <button className="add-btn" type="submit">
             Add
@@ -120,7 +120,7 @@ function App() {
 
         <ul className="todo-list" aria-live="polite">
           {visibleTodos.length === 0 ? (
-            <li className="empty">No tasks in this filter.</li>
+            <li className="empty">No tasks found within this decree.</li>
           ) : (
             visibleTodos.map((item) => (
               <li key={item.id} className={item.done ? 'todo-item is-done' : 'todo-item'}>
